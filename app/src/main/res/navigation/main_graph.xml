@@ -11,14 +11,15 @@
         android:label="fragment_horoscope"
         tools:layout="@layout/fragment_horoscope" />
     <fragment
-        android:id="@+id/palmistryFragment"
-        android:name="com.javimutis.horoscapp.ui.palmistry.PalmistryFragment"
-        android:label="fragment_palmistry"
-        tools:layout="@layout/fragment_palmistry" />
-    <fragment
         android:id="@+id/luckFragment"
         android:name="com.javimutis.horoscapp.ui.luck.LuckFragment"
         android:label="fragment_luck"
         tools:layout="@layout/fragment_luck" />
+    <fragment
+        android:id="@+id/palmistryFragment"
+        android:name="com.javimutis.horoscapp.ui.palmistry.PalmistryFragment"
+        android:label="fragment_palmistry"
+        tools:layout="@layout/fragment_palmistry" />
+
 
 </navigation>
