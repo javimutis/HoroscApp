@@ -7,17 +7,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
-@HiltViewModel
+@HiltViewModel // Indica que este ViewModel puede recibir inyección de dependencias con Hilt
 class HoroscopeViewModel @Inject constructor() : ViewModel() {
-    //Flow comunicación constante entre dos vistas, siempre que hay un dato se le va a notificar a la otra vista
-    private var _horoscope = MutableStateFlow<List<HoroscopeInfo>>(emptyList())
-    val horoscope: StateFlow<List<HoroscopeInfo>> = _horoscope
+    // Flow permite la comunicación constante entre el ViewModel y la UI
+    private var _horoscope = MutableStateFlow<List<HoroscopeInfo>>(emptyList()) // Estado interno mutable
+    val horoscope: StateFlow<List<HoroscopeInfo>> = _horoscope // Estado inmutable para la UI
 
-    //init: Es como el OnCreate de las activities
+    // Init: Es como el onCreate de las actividades, se ejecuta al instanciar el ViewModel
     init {
-        _horoscope.value = listOf()
-
+        _horoscope.value = listOf() // Se inicializa la lista de horóscopos vacía
     }
-
-
 }
+

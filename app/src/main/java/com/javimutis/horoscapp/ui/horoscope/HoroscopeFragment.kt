@@ -14,38 +14,39 @@ import com.javimutis.horoscapp.databinding.FragmentHoroscopeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
+@AndroidEntryPoint // Hilt lo marca como un fragmento inyectable
 class HoroscopeFragment : Fragment() {
-    //conexión entre viewmodel y fragment
+    // Conexión entre el ViewModel y el Fragment
     private val horoscopeViewModel by viewModels<HoroscopeViewModel>()
 
+    // Variable que representa el binding de la vista
     private var _binding: FragmentHoroscopeBinding? = null
     private val binding get() = _binding!!
 
-    //Este es cuando la vista ya ha sido creada
+    // Método que se ejecuta cuando la vista ha sido creada
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
     }
 
+    // Método que inicializa la UI
     private fun initUI() {
         initUIState()
     }
 
+    // Método que inicializa el estado de la UI
     private fun initUIState() {
-        //Las corrutinas son formas de gestionar hilos de forma asincrónica. También existen
-        // corrutinas especiales para fragmentos, que se enganchan al ciclo de vida del fragmento o activity
+        // Se usa una corrutina para observar cambios en los datos del ViewModel
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 horoscopeViewModel.horoscope.collect {
-                    Log.i("MutisApp", it.toString())
+                    Log.i("MutisApp", it.toString()) // Se imprime la lista de horóscopos en el log
                 }
             }
         }
-
     }
 
-    // este es el metodo que configura la vista del fragment. Este es cuando se crea la vista
+    // Método que configura la vista del fragmento
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
