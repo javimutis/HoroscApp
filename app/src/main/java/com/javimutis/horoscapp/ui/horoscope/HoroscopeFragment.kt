@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.javimutis.horoscapp.databinding.FragmentHoroscopeBinding
 import com.javimutis.horoscapp.domain.model.HoroscopeInfo
+import com.javimutis.horoscapp.domain.model.HoroscopeInfo.*
 import com.javimutis.horoscapp.domain.model.HoroscopeModel
 import com.javimutis.horoscapp.ui.horoscope.adapter.HoroscopeAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,20 +45,19 @@ class HoroscopeFragment : Fragment() {
         // Inicializa el adaptador para el RecyclerView con una acción cuando un item es seleccionado
         horoscopeAdapter = HoroscopeAdapter(onItemSelected = {
            val type = when(it){
-                HoroscopeInfo.Aquarius -> HoroscopeModel.Aquarius
-                HoroscopeInfo.Aries -> HoroscopeModel.Aries
-                HoroscopeInfo.Cancer -> HoroscopeModel.Cancer
-                HoroscopeInfo.Capricorn -> HoroscopeModel.Capricorn
-                HoroscopeInfo.Gemini -> HoroscopeModel.Gemini
-                HoroscopeInfo.Leo -> HoroscopeModel.Leo
-                HoroscopeInfo.Libra -> HoroscopeModel.Libra
-                HoroscopeInfo.Pisces -> HoroscopeModel.Pisces
-                HoroscopeInfo.Sagittarius -> HoroscopeModel.Sagittarius
-                HoroscopeInfo.Scorpio -> HoroscopeModel.Scorpio
-                HoroscopeInfo.Taurus -> HoroscopeModel.Taurus
-                HoroscopeInfo.Virgo -> HoroscopeModel.Virgo
+                Aquarius -> HoroscopeModel.Aquarius
+                Aries -> HoroscopeModel.Aries
+                Cancer -> HoroscopeModel.Cancer
+                Capricorn -> HoroscopeModel.Capricorn
+                Gemini -> HoroscopeModel.Gemini
+                Leo -> HoroscopeModel.Leo
+                Libra -> HoroscopeModel.Libra
+                Pisces -> HoroscopeModel.Pisces
+                Sagittarius -> HoroscopeModel.Sagittarius
+                Scorpio -> HoroscopeModel.Scorpio
+                Taurus -> HoroscopeModel.Taurus
+                Virgo -> HoroscopeModel.Virgo
             }
-
             findNavController().navigate(
                 HoroscopeFragmentDirections.actionHoroscopeFragmentToHoroscopeDetailActivity(type)
             )

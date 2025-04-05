@@ -28,10 +28,10 @@
         android:id="@+id/horoscopeDetailActivity"
         android:name="com.javimutis.horoscapp.ui.detail.HoroscopeDetailActivity"
         android:label="activity_horoscope_detail"
-        tools:layout="@layout/activity_horoscope_detail" />
-    <argument
-        android:name="type"
-        app:argType="com.javimutis.horoscapp.domain.model.HoroscopeModel" />
+        tools:layout="@layout/activity_horoscope_detail">
+        <argument
+            android:name="type"
+            app:argType="com.javimutis.horoscapp.domain.model.HoroscopeModel" />
 
-
+    </activity>
 </navigation>
