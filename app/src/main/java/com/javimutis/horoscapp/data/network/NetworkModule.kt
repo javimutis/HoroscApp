@@ -1,6 +1,8 @@
 package com.javimutis.horoscapp.data.network
 
+import com.javimutis.horoscapp.BuildConfig.BASE_URL
 import com.javimutis.horoscapp.data.RepositoryImpl
+import com.javimutis.horoscapp.data.core.interceptors.AuthInterceptor
 import com.javimutis.horoscapp.domain.Repository
 import dagger.Module
 import dagger.Provides
@@ -21,7 +23,7 @@ object NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl("https://newastro.vercel.app/")
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -29,12 +31,13 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient{
+    fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
         val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
         return OkHttpClient
             .Builder()
             .addInterceptor(interceptor)
+            .addInterceptor(authInterceptor)
             .build()
 
     }
@@ -43,6 +46,7 @@ object NetworkModule {
     fun provideHoroscopeApiService(retrofit: Retrofit): HoroscopeApiService {
         return retrofit.create(HoroscopeApiService::class.java)
     }
+
     @Provides
     fun provideRepository(apiService: HoroscopeApiService): Repository {
         return RepositoryImpl(apiService)
