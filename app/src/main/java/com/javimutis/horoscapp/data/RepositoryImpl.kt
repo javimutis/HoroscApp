@@ -1,7 +1,7 @@
 package com.javimutis.horoscapp.data
 
 import android.util.Log
-import com.javimutis.horoscapp.data.providers.network.HoroscopeApiService
+import com.javimutis.horoscapp.data.network.HoroscopeApiService
 import com.javimutis.horoscapp.domain.Repository
 import com.javimutis.horoscapp.domain.model.PredictionModel
 import javax.inject.Inject

@@ -13,6 +13,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.navArgs
 import com.javimutis.horoscapp.R
 import com.javimutis.horoscapp.databinding.ActivityHoroscopeDetailBinding
+import com.javimutis.horoscapp.domain.model.HoroscopeModel
+import com.javimutis.horoscapp.domain.model.HoroscopeModel.*
 import com.javimutis.horoscapp.ui.detail.HoroscopeDetailState.Error
 import com.javimutis.horoscapp.ui.detail.HoroscopeDetailState.Loading
 import com.javimutis.horoscapp.ui.detail.HoroscopeDetailState.Success
@@ -39,12 +41,17 @@ class HoroscopeDetailActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         initUI()
+        horoscopeDetailViewModel.getHoroscope(args.type)
     }
 
     private fun initUI() {
+        initListener()
         initUIState()
+    }
+
+    private fun initListener() {
+        binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
 
     private fun initUIState() {
@@ -54,22 +61,41 @@ class HoroscopeDetailActivity : AppCompatActivity() {
                     when (it) {
                         is Error -> errorState()
                         Loading -> loadingState()
-                        is Success -> succesState()
+                        is Success -> succesState(it)
                     }
                 }
             }
         }
     }
 
-    private fun succesState() {
-        TODO("Not yet implemented")
+    private fun loadingState() {
+        binding.pb.isVisible = true
     }
 
     private fun errorState() {
-        TODO("Not yet implemented")
+        binding.pb.isVisible = false
     }
 
-    private fun loadingState() {
-        binding.pb.isVisible = true
+
+    private fun succesState(state: HoroscopeDetailState.Success) {
+        binding.pb.isVisible = false
+        binding.tvTitle.text = state.sign
+        binding.tvBody.text = state.prediction
+
+        val image = when(state.horoscopeModel){
+            Aquarius -> R.drawable.detail_aquarius
+            Aries -> R.drawable.detail_aries
+            Cancer -> R.drawable.detail_cancer
+            Capricorn -> R.drawable.detail_capricorn
+            Gemini -> R.drawable.detail_gemini
+            Leo -> R.drawable.detail_leo
+            Libra -> R.drawable.detail_libra
+            Pisces -> R.drawable.detail_pisces
+            Sagittarius -> R.drawable.detail_sagittarius
+            Scorpio -> R.drawable.detail_scorpio
+            Taurus -> R.drawable.detail_taurus
+            Virgo -> R.drawable.detail_virgo
+        }
+        binding.ivDetail.setImageResource(image)
     }
 }

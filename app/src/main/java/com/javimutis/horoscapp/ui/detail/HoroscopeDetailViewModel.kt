@@ -2,6 +2,7 @@ package com.javimutis.horoscapp.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.javimutis.horoscapp.domain.model.HoroscopeModel
 import com.javimutis.horoscapp.domain.usecase.GetPredictionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,16 +18,16 @@ class HoroscopeDetailViewModel @Inject constructor(private val getPredictionUseC
 
     private var _state = MutableStateFlow<HoroscopeDetailState>(HoroscopeDetailState.Loading)
     val state: StateFlow<HoroscopeDetailState> = _state
+    lateinit var horoscope:HoroscopeModel
 
-    fun getHoroscope(sign: String) {
+    fun getHoroscope(sign: HoroscopeModel) {
+        horoscope = sign
         viewModelScope.launch {
             _state.value = HoroscopeDetailState.Loading
             //Hilo principal
-            val result = withContext(Dispatchers.IO) {
-                getPredictionUseCase(sign)
-            } //Hilo secundario
+            val result = withContext(Dispatchers.IO) { getPredictionUseCase(sign.name)            } //Hilo secundario
             if (result != null) {
-                _state.value = HoroscopeDetailState.Success(result.horoscope, result.sign)
+                _state.value = HoroscopeDetailState.Success(result.horoscope, result.sign, horoscope)
             } else {
                 _state.value =
                     HoroscopeDetailState.Error("Ha ocurrido un error, intentelo más tarde")
