@@ -4,9 +4,10 @@ import com.javimutis.horoscapp.data.providers.network.response.PredictionRespons
 import retrofit2.http.GET
 import retrofit2.http.Path
 
+// Interfaz que define cómo Retrofit hará las llamadas a la API.
 interface HoroscopeApiService {
 
-    @GET("/{sign}")
-    suspend fun getHoroscope(@Path("sign") sign:String):PredictionResponse
-
+    // Este endpoint obtiene la predicción para un signo específico.
+    @GET("/{sign}") // Se usa la anotación @GET con un parámetro en la URL
+    suspend fun getHoroscope(@Path("sign") sign: String): PredictionResponse
 }

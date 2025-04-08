@@ -2,12 +2,14 @@ package com.javimutis.horoscapp.domain.model
 
 import com.javimutis.horoscapp.R
 
-// Clase sellada (sealed class) que representa la información de cada signo del zodiaco.
-// Cada signo es un objeto dentro de la clase y tiene dos propiedades:
-// - img: hace referencia a la imagen del signo.
-// - name: hace referencia al nombre del signo.
+// Esta clase "sealed" representa los distintos signos del zodiaco.
+// Una sealed class (clase sellada) permite definir un conjunto cerrado de subclases.
+// Cada signo es un "data object", que es como una instancia única con sus datos.
+// img: id de la imagen del signo (guardada en res/drawable)
+// name: id del nombre del signo (guardado en res/strings.xml)
 sealed class HoroscopeInfo(val img: Int, val name: Int) {
 
+    // Cada uno de estos objetos representa un signo zodiacal con su imagen y nombre.
     data object Aries : HoroscopeInfo(R.drawable.aries, R.string.aries)
     data object Taurus : HoroscopeInfo(R.drawable.taurus, R.string.taurus)
     data object Gemini : HoroscopeInfo(R.drawable.geminis, R.string.gemini)

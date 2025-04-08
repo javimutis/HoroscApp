@@ -15,9 +15,10 @@ import com.javimutis.horoscapp.domain.model.HoroscopeInfo.Taurus
 import com.javimutis.horoscapp.domain.model.HoroscopeInfo.Virgo
 import javax.inject.Inject
 
-// La clase HoroscopeProvider se encarga de devolver la lista de los signos zodiacales.
+// Esta clase se encarga de entregar la lista completa de signos del zodiaco
 class HoroscopeProvider @Inject constructor() {
-    // Método que devuelve una lista con todos los signos zodiacales
+
+    // Esta función retorna una lista con todos los signos disponibles en la app
     fun getHoroscopes(): List<HoroscopeInfo> {
         return listOf(
             Aries,
@@ -32,6 +33,6 @@ class HoroscopeProvider @Inject constructor() {
             Capricorn,
             Aquarius,
             Pisces
-        );
+        )
     }
 }

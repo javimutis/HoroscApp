@@ -21,7 +21,7 @@ class HoroscopeAdapter(
 
     // Método que se ejecuta cuando se necesita crear un nuevo ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoroscopeViewHolder {
-        // Se infla el layout 'item_horoscope' para cada elemento de la lista
+        // Infla el layout 'item_horoscope' para cada elemento de la lista
         return HoroscopeViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_horoscope, parent, false)
         )

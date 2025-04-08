@@ -20,29 +20,34 @@ class MainActivity : AppCompatActivity() {
     // Controlador de navegación para gestionar los fragmentos
     private lateinit var navController: NavController
 
+    // Método onCreate que se ejecuta cuando la actividad es creada
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge() // Habilita el modo de pantalla completa sin bordes
 
-        binding = ActivityMainBinding.inflate(layoutInflater) // Infla el layout usando ViewBinding
-        setContentView(binding.root) // Asigna la vista inflada a la actividad
+        enableEdgeToEdge() // Habilita el modo de pantalla completa sin bordes (pantalla más grande)
 
-        initUI() // Llama al método que inicializa la interfaz de usuario
+        // Inflar el layout de la actividad usando ViewBinding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root) // Asignar la vista inflada a la actividad
+
+        initUI() // Llamada a un método para inicializar la interfaz de usuario
     }
 
+    // Método para inicializar la interfaz de usuario
     private fun initUI() {
         initNavigation() // Inicializa la navegación de la app
     }
 
+    // Método para inicializar la navegación entre fragmentos
     private fun initNavigation() {
-        // Obtiene el fragmento que gestiona la navegación dentro del contenedor de fragmentos
+        // Encuentra el fragmento que gestiona la navegación en el contenedor de fragmentos
         val navHost: NavHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 
         // Asigna el controlador de navegación al NavController
         navController = navHost.navController
 
-        // Conecta el BottomNavigationView con el NavController para gestionar la navegación
+        // Configura el BottomNavigationView para que interactúe con el NavController y gestione la navegación
         binding.bottomNavView.setupWithNavController(navController)
     }
 }
