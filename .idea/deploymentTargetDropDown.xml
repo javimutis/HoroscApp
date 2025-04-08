@@ -5,8 +5,24 @@
       <entry key="MainActivity">
         <State />
       </entry>
-      <entry key="app">
+      <entry key="MainActivity (1)">
         <State />
+      </entry>
+      <entry key="app">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\javie\.android\avd\Pixel_8_API_28.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2025-04-03T20:15:43.845943100Z" />
+        </State>
       </entry>
     </value>
   </component>
