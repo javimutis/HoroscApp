@@ -6,7 +6,10 @@ import com.javimutis.horoscapp.ui.model.LuckyModel
 import javax.inject.Inject
 import kotlin.random.Random
 
+// Proveedor que entrega una carta aleatoria desde un total de 32 opciones
 class RandomCardProvider @Inject constructor() {
+
+    // Devuelve una LuckyModel aleatoria (imagen + texto)
     fun getLucky(): LuckyModel? {
         return when (Random.nextInt(0, 32)) {
             0 -> LuckyModel(R.drawable.card_fool, R.string.luck_0)
