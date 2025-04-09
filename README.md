@@ -1,76 +1,79 @@
-🌟 Horóscopo App
-Aplicación Android desarrollada con Jetpack y Hilt para mostrar predicciones zodiacales y cartas de la suerte.
-Este proyecto forma parte del curso de Android Intermedio de Aristidevs.
+# **Horóscopo App**
 
-🧙‍♀️ Descripción
-Horóscopo App permite a los usuarios seleccionar su signo zodiacal y recibir una predicción diaria. Además, cuenta con una función interactiva que revela una "carta de la suerte" con animaciones.
-La aplicación utiliza una arquitectura limpia basada en capas (data, domain y ui), e inyección de dependencias con Hilt.
+**Proyecto de aplicación Android para mostrar predicciones de horóscopo y cartas de la suerte.**  
+Este proyecto forma parte del **curso de Android Intermedio** de **Aristidevs**.
 
-✨ Características Principales
-🔮 Lista de signos zodiacales con imágenes e información básica.
+---
 
-📜 Predicción diaria al seleccionar un signo.
+## **Descripción**
 
-🎡 Ruleta animada que muestra una carta de la suerte.
+La aplicación muestra una lista de signos zodiacales para que el usuario seleccione uno y obtenga su predicción diaria.  
+También incluye una función para revelar una “carta de la suerte” mediante animaciones de ruleta.  
+El proyecto hace uso de diferentes capas (**Data**, **Domain** y **UI**) e implementa inyección de dependencias con **Hilt**.
 
-👆 Gestos de swipe para activar animaciones.
+---
 
-🧩 Inyección de dependencias con Hilt (Retrofit, Repositorios, ViewModels, etc.).
+## **Características Principales**
 
-🏗️ Arquitectura limpia: separación clara entre capas.
+- Lista de signos zodiacales con imágenes e información básica.
+- Pantalla detallada con la predicción diaria según el signo seleccionado.
+- Detección de gestos de “swipe” para activar animaciones (por ejemplo, girar una ruleta).
+- Inyección de dependencias con **Hilt** para simplificar la creación de objetos (Retrofit, Repositorios, ViewModels, etc.).
+- Patrón de arquitectura limpio, separando código de la capa de datos, dominio y presentación.
+- Uso de coroutines y StateFlow para la gestión de estados y consumo de datos.
 
-🔄 Uso de Coroutines y StateFlow para manejar estados y flujos de datos.
+---
 
-🗂️ Estructura del Proyecto
-java
-Copiar
-Editar
-📦 horoscapp/
-├── data/
-│   ├── NetworkModule.kt → Configura Retrofit y OkHttp.
-│   ├── Repository.kt / RepositoryImpl.kt → Lógica para obtener datos desde API.
-│   ├── providers/ → Datos estáticos y aleatorios (como cartas).
-│   └── models/ → Modelos de dominio y respuestas.
-│
-├── domain/
-│   └── GetPredictionUseCase.kt → Caso de uso principal para predicción.
-│
-├── ui/
-│   ├── activities/ → MainActivity.
-│   ├── fragments/ → HoroscopeFragment, LuckFragment, HoroscopeDetailActivity.
-│   ├── viewmodels/ → HoroscopeViewModel, HoroscopeDetailViewModel, LuckViewModel.
-│   ├── adapters/ → HoroscopeAdapter, HoroscopeViewHolder.
-│   └── listeners/ → OnSwipeTouchListener (para gestos).
-│
-├── di/
-│   └── NetworkModule.kt → Configuración de Hilt para inyección.
-│
-└── utils/
-├── AuthInterceptor.kt
-└── TokenManager.kt → Actualmente vacíos, pensados para autenticación.
-▶️ Cómo Ejecutar el Proyecto
-Clona o descarga este repositorio.
+## **Estructura del Proyecto**
 
-Abre el proyecto en Android Studio.
+- **data/**
+    - **NetworkModule:** Configura Retrofit y OkHttp con interceptores.
+    - **Repository** y **RepositoryImpl:** Se encargan de obtener la información del horóscopo desde la API.
+    - **Proveedores** (HoroscopeProvider, RandomCardProvider): Datos estáticos y elementos aleatorios (cartas).
+    - **Modelos** de dominio y respuestas (PredictionModel, PredictionResponse, etc.).
 
-Asegúrate de tener el SDK y herramientas necesarias instaladas.
+- **domain/**
+    - **GetPredictionUseCase:** Caso de uso para obtener la predicción del horóscopo según el signo.
 
-Compila y ejecuta en un emulador o dispositivo físico.
+- **ui/**
+    - **Activities** y **Fragments** (MainActivity, HoroscopeFragment, LuckFragment, HoroscopeDetailActivity):  
+      Controlan la navegación y muestran la información en pantalla.
+    - **ViewModels** (HoroscopeViewModel, HoroscopeDetailViewModel, LuckViewModel): Manejan la lógica de UI.
+    - **Adaptadores** (HoroscopeAdapter, HoroscopeViewHolder): Para poblado de listas en RecyclerView.
+    - **Listeners** (OnSwipeTouchListener): Para detectar gestos de swipe.
 
-📋 Requisitos
-Android Studio (versión actual recomendada).
+- **di/**
+    - **Hilt** y sus módulos (NetworkModule) para configurar la inyección de dependencias.
 
-Gradle (según versión configurada en el proyecto).
+- **utils/**
+    - **AuthInterceptor, TokenManager:** Manejan, en teoría, la autenticación y token (actualmente vacíos).
 
-Conexión a Internet (la app requiere consumir un servicio de predicciones zodiacales).
+---
 
-📝 Notas
-Este proyecto representa un avance parcial del curso de Android Intermedio de Aristidevs.
+## **Cómo Ejecutar el Proyecto**
 
-El AuthInterceptor contiene un ejemplo de manejo de tokens, pero no está en uso actualmente.
+1. **Clonar** o **descargar** este repositorio.
+2. **Abrir** el proyecto en **Android Studio**.
+3. Asegurarse de tener configurado el **SDK de Android** correspondiente.
+4. **Compilar** y **ejecutar** la app en un dispositivo físico o emulador desde Android Studio.
 
-El endpoint (BASE_URL) de la API del horóscopo debe estar disponible para que la app funcione correctamente.
+---
 
-🙌 Agradecimientos
-Gracias por revisar este proyecto.
-Si tienes dudas, sugerencias o quieres aportar, ¡no dudes en abrir un issue o contactarme!
+## **Requisitos**
+
+- **Android Studio** (versión recomendada o superior).
+- **Gradle** según versión configurada en el proyecto.
+- Conexión a Internet para consumir el servicio de horóscopo  
+  (actualmente requiere endpoint funcional, de momento está referenciado en el *BASE_URL*).
+
+---
+
+## **Notas**
+
+- Este es un avance hasta la parte actual del curso de Android Intermedio con Aristidevs.
+- El token en AuthInterceptor es solo un ejemplo, no se está utilizando un token real.
+
+---
+
+¡Gracias por revisar este `README`! Si tienes dudas o sugerencias, siéntete libre de abrir un ticket o contactarme.  
+**¡Recuerda que este proyecto está en desarrollo!**  
