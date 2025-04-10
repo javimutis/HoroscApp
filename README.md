@@ -53,7 +53,8 @@ El proyecto está construido con una arquitectura limpia y moderna (Clean Archit
 - **utils/**
     - **AuthInterceptor, TokenManager:** Manejan, en teoría, la autenticación y token (actualmente vacíos).
 
----## ▶️ **Cómo Ejecutar el Proyecto**
+---
+## ▶️ **Cómo Ejecutar el Proyecto**
 
 1. Clona o descarga el repositorio.
 2. Abre el proyecto en **Android Studio**.
