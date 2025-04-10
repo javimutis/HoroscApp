@@ -31,7 +31,7 @@ android {
             resValue("string", "mutisname", "HoroscApp")
             buildConfigField("String", "BASE_URL", "\"https://newastro.vercel.app/\"")
         }
-        getByName("debug"){
+        getByName("debug") {
             isDebuggable = true
             resValue("string", "mutisname", "[DEBUG] HoroscApp")
             buildConfigField("String", "BASE_URL", "\"https://newastro-debug.vercel.app/\"")
@@ -73,6 +73,16 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
     implementation(libs.okhttp.logging)
+
+    //CameraX
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.extensions)
+
+    implementation(libs.androidx.lifecycle.runtime)
+
 
 
 }
