@@ -1,6 +1,6 @@
 package com.javimutis.horoscapp.data.network
 
-import com.javimutis.horoscapp.data.providers.network.response.PredictionResponse
+import com.javimutis.horoscapp.data.network.response.PredictionResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 

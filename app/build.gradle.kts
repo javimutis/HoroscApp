@@ -48,7 +48,17 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    testOptions {
+        unitTests {
+            isReturnDefaultValues = true
+        }
+    }
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 
 dependencies {
 
@@ -57,9 +67,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+
 
     // NavigationComponent
     implementation(libs.androidx.navigation.fragment)
@@ -69,7 +77,7 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
-// Retrofit
+    // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
     implementation(libs.okhttp.logging)
@@ -83,6 +91,10 @@ dependencies {
 
     implementation(libs.androidx.lifecycle.runtime)
 
+    // Testing
+    testImplementation(libs.junit)
+    testImplementation(libs.kotest.assertions)
 
-
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

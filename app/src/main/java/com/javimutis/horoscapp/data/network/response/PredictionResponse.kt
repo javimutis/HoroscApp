@@ -1,4 +1,4 @@
-package com.javimutis.horoscapp.data.providers.network.response
+package com.javimutis.horoscapp.data.network.response
 
 import com.google.gson.annotations.SerializedName
 import com.javimutis.horoscapp.domain.model.PredictionModel
