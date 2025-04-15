@@ -32,28 +32,29 @@ El proyecto está construido con una arquitectura limpia y moderna (Clean Archit
 ## 🧱 **Estructura del Proyecto**
 
 - **data/**
-    - **NetworkModule:** Configura Retrofit y OkHttp con interceptores.
-    - **Repository** y **RepositoryImpl:** Se encargan de obtener la información del horóscopo desde la API.
-    - **Proveedores** (HoroscopeProvider, RandomCardProvider): Datos estáticos y elementos aleatorios (cartas).
-    - **Modelos** de dominio y respuestas (PredictionModel, PredictionResponse, etc.).
+  - **NetworkModule:** Configura Retrofit y OkHttp con interceptores.
+  - **Repository** y **RepositoryImpl:** Se encargan de obtener la información del horóscopo desde la API.
+  - **Proveedores** (HoroscopeProvider, RandomCardProvider): Datos estáticos y elementos aleatorios (cartas).
+  - **Modelos** de dominio y respuestas (PredictionModel, PredictionResponse, etc.).
 
 - **domain/**
-    - **GetPredictionUseCase:** Caso de uso para obtener la predicción del horóscopo según el signo.
+  - **GetPredictionUseCase:** Caso de uso para obtener la predicción del horóscopo según el signo.
 
 - **ui/**
-    - **Activities** y **Fragments** (MainActivity, HoroscopeFragment, LuckFragment, HoroscopeDetailActivity, PalmistryFragment):  
-      Controlan la navegación y muestran la información en pantalla.
-    - **ViewModels** (HoroscopeViewModel, HoroscopeDetailViewModel, LuckViewModel): Manejan la lógica de UI.
-    - **Adaptadores** (HoroscopeAdapter, HoroscopeViewHolder): Para poblado de listas en RecyclerView.
-    - **Listeners** (OnSwipeTouchListener): Para detectar gestos de swipe.
+  - **Activities** y **Fragments** (MainActivity, HoroscopeFragment, LuckFragment, HoroscopeDetailActivity, PalmistryFragment):  
+    Controlan la navegación y muestran la información en pantalla.
+  - **ViewModels** (HoroscopeViewModel, HoroscopeDetailViewModel, LuckViewModel): Manejan la lógica de UI.
+  - **Adaptadores** (HoroscopeAdapter, HoroscopeViewHolder): Para poblado de listas en RecyclerView.
+  - **Listeners** (OnSwipeTouchListener): Para detectar gestos de swipe.
 
 - **di/**
-    - **Hilt** y sus módulos (NetworkModule) para configurar la inyección de dependencias.
+  - **Hilt** y sus módulos (NetworkModule) para configurar la inyección de dependencias.
 
 - **utils/**
-    - **AuthInterceptor, TokenManager:** Manejan, en teoría, la autenticación y token (actualmente vacíos).
+  - **AuthInterceptor, TokenManager:** Manejan, en teoría, la autenticación y token (actualmente vacíos).
 
 ---
+
 ## ▶️ **Cómo Ejecutar el Proyecto**
 
 1. Clona o descarga el repositorio.
@@ -80,6 +81,38 @@ El proyecto está construido con una arquitectura limpia y moderna (Clean Archit
 
 ---
 
-## 🙌 **Gracias por visitar este proyecto**
+## ✅ **Testing Instrumentado (Espresso + Hilt)**
 
-Si tienes preguntas, sugerencias o encuentras bugs, no dudes en abrir un issue o dejar un comentario.  
+Este proyecto incluye **tests de UI automatizados** usando **Espresso** junto a **Hilt** para pruebas con inyección de dependencias.
+
+Los tests aseguran que las pantallas principales funcionen correctamente al realizar acciones como tocar botones o abrir detalles. Son ideales para aprender sobre testing en Android moderno.
+
+### 🧪 Pruebas Incluidas
+
+#### 📲 `MainActivityTest.kt`
+
+Archivo ubicado en `ui/home/`, contiene pruebas instrumentadas para verificar el comportamiento de la pantalla principal:
+
+- `when_mainactivity_is_created_then_open_luckfragment()`  
+  ✅ Simula un clic en la pestaña o fragmento de la **ruleta de la suerte** para asegurarse que se puede abrir correctamente.
+
+- `when_horoscope_is_selected_then_open_detail()`  
+  ✅ Simula un clic en el **primer signo del horóscopo** (lista con RecyclerView) y verifica que se abra la **pantalla de detalle del horóscopo**.
+
+### 🧠 Tecnologías usadas en los tests
+
+- **Espresso**: Para simular interacciones del usuario (clics, scroll, navegación).
+- **Intents de Espresso**: Para verificar cambios entre pantallas (por ejemplo, que se abre `HoroscopeDetailActivity`).
+- **HiltAndroidRule**: Para habilitar la inyección de dependencias durante los tests.
+- **ActivityScenarioRule**: Para lanzar y testear una `Activity`.
+
+### 🧪 Runner personalizado
+
+El proyecto incluye un **runner de test personalizado** llamado `CustomTestRunner`, ubicado en la raíz del proyecto:
+
+```kotlin
+class CustomTestRunner : AndroidJUnitRunner() {
+    override fun newApplication(cl: ClassLoader?, className: String?, context: Context?): Application {
+        return super.newApplication(cl, HiltTestApplication::class.java.name, context)
+    }
+}
