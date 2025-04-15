@@ -18,6 +18,15 @@
           <timeTargetWasSelectedWithDropDown value="2025-04-03T20:15:43.845943100Z" />
         </State>
       </entry>
+      <entry key="useAppContext()">
+        <State />
+      </entry>
+      <entry key="when_horoscope_is_selected_then_open_detail()">
+        <State />
+      </entry>
+      <entry key="when_mainactivity_is_created_then_open_luckfragment()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
