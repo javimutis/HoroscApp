@@ -1,115 +1,83 @@
-# 🔮 **Horóscopo App**
+# 🔮 Horoscope App – Clean Architecture Android Project
 
-**Aplicación Android para mostrar predicciones del horóscopo, cartas de la suerte y lectura de la palma.**  
-Proyecto desarrollado como parte del **curso de Android Intermedio** con **Aristidevs**.
+**Horoscope App** is a native Android application that blends modern mobile development practices with a magical user experience.  
+It was developed as part of the **Intermediate Android Course by Aristidevs**, demonstrating **Clean Architecture**, **Hilt dependency injection**, **StateFlow**, **coroutines**, and **UI testing with Espresso**.
 
----
-
-## 🧭 **Descripción General**
-
-La app ofrece una experiencia mágica donde puedes:
-- Consultar tu horóscopo diario según tu signo zodiacal 🐏♋♎
-- Girar una ruleta para descubrir una **carta de la suerte** 🎴
-- Usar la cámara del dispositivo para una **lectura simbólica de la palma** ✋✨
-
-El proyecto está construido con una arquitectura limpia y moderna (Clean Architecture), separando la lógica en capas y utilizando **Hilt** para la inyección de dependencias.
+<p align="center">
+  <img src="assets/demo1.png" alt="Horoscope List" width="250"/>
+  <img src="assets/demo2.png" alt="Lucky Card Screen" width="250"/>
+  <img src="assets/demo3.png" alt="Palm Reading Feature" width="250"/>
+</p>
 
 ---
 
-## 🌟 **Características Principales**
+## 🧭 Overview
 
-- 📱 Lista de signos zodiacales con sus predicciones diarias.
-- 🎰 Animaciones tipo ruleta para descubrir cartas aleatorias.
-- 📸 Escaneo simbólico de la palma usando la cámara.
-- 👆 Detección de gestos (swipe) para activar acciones.
-- 🚀 Arquitectura por capas (Data, Domain, UI).
-- 🧠 ViewModels con **StateFlow** y **coroutines**.
-- 💉 Inyección de dependencias con **Hilt**.
-- ✨ Interfaz visual mágica y misteriosa.
+This app offers an interactive way to explore:
+- **Daily horoscope predictions** by zodiac sign 🐏♋♎  
+- A **lucky card roulette** with smooth animations 🎴  
+- A **palmistry feature** using the device camera ✋✨  
+
+Built on a **layered architecture (Data, Domain, UI)** with **Hilt DI**, the project is clean, modular, and easy to maintain.
 
 ---
 
-## 🧱 **Estructura del Proyecto**
+## 🌟 Key Features
 
-- **data/**
-  - **NetworkModule:** Configura Retrofit y OkHttp con interceptores.
-  - **Repository** y **RepositoryImpl:** Se encargan de obtener la información del horóscopo desde la API.
-  - **Proveedores** (HoroscopeProvider, RandomCardProvider): Datos estáticos y elementos aleatorios (cartas).
-  - **Modelos** de dominio y respuestas (PredictionModel, PredictionResponse, etc.).
-
-- **domain/**
-  - **GetPredictionUseCase:** Caso de uso para obtener la predicción del horóscopo según el signo.
-
-- **ui/**
-  - **Activities** y **Fragments** (MainActivity, HoroscopeFragment, LuckFragment, HoroscopeDetailActivity, PalmistryFragment):  
-    Controlan la navegación y muestran la información en pantalla.
-  - **ViewModels** (HoroscopeViewModel, HoroscopeDetailViewModel, LuckViewModel): Manejan la lógica de UI.
-  - **Adaptadores** (HoroscopeAdapter, HoroscopeViewHolder): Para poblado de listas en RecyclerView.
-  - **Listeners** (OnSwipeTouchListener): Para detectar gestos de swipe.
-
-- **di/**
-  - **Hilt** y sus módulos (NetworkModule) para configurar la inyección de dependencias.
-
-- **utils/**
-  - **AuthInterceptor, TokenManager:** Manejan, en teoría, la autenticación y token (actualmente vacíos).
+- **Zodiac list** with daily predictions  
+- **Animated roulette** to reveal random lucky cards  
+- **Palm scanning feature** (decorative visual component)  
+- **Gesture detection (swipe)** for interactive navigation  
+- **ViewModels** with **StateFlow** and **coroutines**  
+- **Dependency injection with Hilt**  
+- **Modern, visually immersive interface**  
 
 ---
 
-## ▶️ **Cómo Ejecutar el Proyecto**
+## 🧱 Project Structure
 
-1. Clona o descarga el repositorio.
-2. Abre el proyecto en **Android Studio**.
-3. Asegúrate de tener el SDK correspondiente instalado.
-4. Ejecuta la app en un emulador o dispositivo real.
-5. Concede los permisos necesarios (especialmente cámara).
+**data/**
+- **NetworkModule** – Configures Retrofit and OkHttp interceptors  
+- **Repository / RepositoryImpl** – Fetches horoscope predictions from API  
+- **Providers** – Static and random data (HoroscopeProvider, RandomCardProvider)  
+- **Models** – Domain and response models (PredictionModel, PredictionResponse, etc.)  
+
+**domain/**
+- **GetPredictionUseCase** – Core use case for fetching predictions by zodiac sign  
+
+**ui/**
+- **Activities / Fragments** (MainActivity, HoroscopeFragment, LuckFragment, HoroscopeDetailActivity, PalmistryFragment) – Navigation and UI logic  
+- **ViewModels** (HoroscopeViewModel, HoroscopeDetailViewModel, LuckViewModel) – State management with coroutines  
+- **Adapters** (HoroscopeAdapter, HoroscopeViewHolder) – RecyclerView data binding  
+- **Listeners** (OnSwipeTouchListener) – Swipe gesture detection  
+
+**di/**
+- **Hilt modules** for dependency injection (e.g., NetworkModule)  
+
+**utils/**
+- **AuthInterceptor, TokenManager** – Placeholder for authentication logic (currently empty)  
 
 ---
 
-## ⚙️ **Requisitos Técnicos**
+## ✅ UI Testing with Espresso + Hilt
 
-- **Android Studio** actualizado (versión recomendada).
-- Dependencias compatibles con AndroidX, Hilt, Retrofit, CameraX.
-- Dispositivo físico o emulador con soporte para cámara.
+This project includes **instrumented UI tests** to validate navigation and screen behavior using **Espresso** with **Hilt** for test dependency injection.
 
----
+### Tests Included
 
-## 📌 **Notas**
+**`MainActivityTest.kt`** (`ui/home/`):  
+- `when_mainactivity_is_created_then_open_luckfragment()` – Verifies that tapping on the **lucky card tab** correctly opens the fragment.  
+- `when_horoscope_is_selected_then_open_detail()` – Verifies that tapping on a **zodiac sign** opens the **HoroscopeDetailActivity** screen.  
 
-- Este proyecto sigue en desarrollo como parte del curso.
-- Algunos archivos de `utils` como `AuthInterceptor` están vacíos o son placeholders.
-- La pantalla de lectura de palma es un componente visual decorativo (no utiliza ML aún).
+### Technologies Used in Tests
+- **Espresso** – Simulates user interactions (clicks, scroll, navigation)  
+- **Espresso Intents** – Validates screen transitions  
+- **HiltAndroidRule** – Enables Hilt for instrumentation tests  
+- **ActivityScenarioRule** – Launches activities for testing  
 
----
+### Custom Test Runner
 
-## ✅ **Testing Instrumentado (Espresso + Hilt)**
-
-Este proyecto incluye **tests de UI automatizados** usando **Espresso** junto a **Hilt** para pruebas con inyección de dependencias.
-
-Los tests aseguran que las pantallas principales funcionen correctamente al realizar acciones como tocar botones o abrir detalles. Son ideales para aprender sobre testing en Android moderno.
-
-### 🧪 Pruebas Incluidas
-
-#### 📲 `MainActivityTest.kt`
-
-Archivo ubicado en `ui/home/`, contiene pruebas instrumentadas para verificar el comportamiento de la pantalla principal:
-
-- `when_mainactivity_is_created_then_open_luckfragment()`  
-  ✅ Simula un clic en la pestaña o fragmento de la **ruleta de la suerte** para asegurarse que se puede abrir correctamente.
-
-- `when_horoscope_is_selected_then_open_detail()`  
-  ✅ Simula un clic en el **primer signo del horóscopo** (lista con RecyclerView) y verifica que se abra la **pantalla de detalle del horóscopo**.
-
-### 🧠 Tecnologías usadas en los tests
-
-- **Espresso**: Para simular interacciones del usuario (clics, scroll, navegación).
-- **Intents de Espresso**: Para verificar cambios entre pantallas (por ejemplo, que se abre `HoroscopeDetailActivity`).
-- **HiltAndroidRule**: Para habilitar la inyección de dependencias durante los tests.
-- **ActivityScenarioRule**: Para lanzar y testear una `Activity`.
-
-### 🧪 Runner personalizado
-
-El proyecto incluye un **runner de test personalizado** llamado `CustomTestRunner`, ubicado en la raíz del proyecto:
-
+The project includes a `CustomTestRunner` configured for Hilt testing:
 ```kotlin
 class CustomTestRunner : AndroidJUnitRunner() {
     override fun newApplication(cl: ClassLoader?, className: String?, context: Context?): Application {
